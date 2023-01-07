@@ -93,11 +93,11 @@ void sum(int a[][3],int b[][3]){
 }
 int main(){
     int r1,c1,a[10][10],a1[10][3],i,j;
-    printf("--Matrix 1--\n");
+    printf("=====1st Matrix=====\n");
  
-    printf("Rows= ");
+    printf("Rows : ");
     scanf("%d",&r1);
-    printf("Columns= ");
+    printf("Columns : ");
     scanf("%d",&c1);
  
     sparse(a,a1,r1,c1);
@@ -107,15 +107,15 @@ int main(){
     int r2,c2,b[10][10],b1[10][3];
  
     printf("--Matrix 2--\n");
-    printf("Rows= ");
+    printf("Rows : ");
     scanf("%d",&r2);
-    printf("Columns= ");
+    printf("Columns : ");
     scanf("%d",&c2);
  
     sparse(b,b1,r2,c2);
     printf("\n");
  
     transpose(b1);
-    printf("---------\n");
+    printf("=====2nd Matrix=====\n");
     sum(a1,b1);
 }
