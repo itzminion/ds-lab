@@ -1,13 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
-struct node{
+typedef struct NODE{
     int DATA;
-    struct node* LC;
-    struct node* RC;
-};
+    struct NODE* LC;
+    struct NODE* RC;
+}NODE;
 
-int leafNum(struct node* ptr){
+int leafNum(NODE* ptr){
     int count = 0;
     if(ptr == NULL)
     return 0;
@@ -21,16 +21,16 @@ int leafNum(struct node* ptr){
     }
     return count;
 }
-struct node* succ(struct node* ptr){
-    struct node* ptr1 = ptr->RC;
+NODE* succ(NODE* ptr){
+    NODE* ptr1 = ptr->RC;
     if(ptr1 != NULL) 
     while(ptr1->LC != NULL)
         ptr1 = ptr1->LC;
     return(ptr1);
 }
 
-void insertBST(struct node* ptr, int ITEM){
-    struct node* ptr1;
+void insertBST(NODE* ptr, int ITEM){
+    NODE* ptr1;
     bool flag = false;
     while(ptr != NULL && flag == false){
         if(ITEM < ptr->DATA){
@@ -46,13 +46,13 @@ void insertBST(struct node* ptr, int ITEM){
     }
     if(ptr == NULL){
         if(ptr1->DATA < ITEM){
-            ptr1->RC = (struct node*) malloc(sizeof(struct node));
+            ptr1->RC = (NODE*) malloc(sizeof(NODE));
             ptr1->RC->LC = NULL;
             ptr1->RC->RC = NULL;
             ptr1->RC->DATA = ITEM;
             printf("\n%d inserted successfully!\n", ITEM);
         }else{
-            ptr1->LC = (struct node*) malloc(sizeof(struct node));
+            ptr1->LC = (NODE*) malloc(sizeof(NODE));
             ptr1->LC->LC = NULL;
             ptr1->LC->RC = NULL;
             ptr1->LC->DATA = ITEM;
@@ -60,10 +60,10 @@ void insertBST(struct node* ptr, int ITEM){
         }
     }
 }
-bool deleteBST(struct node* ROOT, int ITEM){
-    struct node* ptr = ROOT;
+bool deleteBST(NODE* ROOT, int ITEM){
+    NODE* ptr = ROOT;
     bool flag = false;
-    struct node* parent;
+    NODE* parent;
     int CASE;
     while(ptr != NULL && flag == false){
         if(ITEM < ptr->DATA){
@@ -109,8 +109,8 @@ bool deleteBST(struct node* ROOT, int ITEM){
     return flag;
 }
 void main(){
-    struct node* ROOT = NULL;
-    struct node* ptr1;
+    NODE* ROOT = NULL;
+    NODE* ptr1;
     int n;
     L:
     printf("1. Insert a node\n");
@@ -122,7 +122,7 @@ void main(){
     switch(n){
         case 1:
             if(ROOT == NULL){
-                ROOT = (struct node*) malloc(sizeof(struct node));
+                ROOT = (NODE*) malloc(sizeof(NODE));
                 ROOT->LC = NULL;
                 ROOT->RC = NULL;
                 printf("\nEnter data\n");
